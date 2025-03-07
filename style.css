@@ -1,0 +1,144 @@
+body {
+  --t: 0.5;
+  --scale: 3;
+  /* background-image: url("./assets/images/1.png"), url("./assets/images/2.png"), */
+  /*   url("./assets/images/3.png"); */
+  /* background-size: 300px, 200px, cover; */
+  /* background-position: */
+  /*   left top, */
+  /*   right bottom, */
+  /*   center; */
+  /* background-repeat: no-repeat; */
+}
+
+/* .background-container { */
+/*   position: fixed; */
+/*   width: 100vw; */
+/*   height: 100vh; */
+/*   overflow: hidden; */
+/* } */
+/* .bg-image { */
+/*   position: absolute; */
+/*   width: 200px; */
+/*   height: auto; */
+/*   opacity: 0.8; */
+/*   animation: float 5s infinite ease-in-out; */
+/* } */
+
+svg.root {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: -100em;
+}
+svg {
+  width: 100vw;
+  height: 100vh;
+  background: #e0cae0;
+  fill-opacity: 0.75;
+}
+
+symbol {
+  overflow: visible;
+}
+
+svg use {
+  transform: rotate(0deg);
+  transition: transform calc(var(--t) * 1s);
+}
+
+svg g.a {
+  transition: transform calc(var(--t) * 1s);
+}
+svg g.a {
+  transform: scale(var(--scale)) rotate(-90deg);
+  filter: url("#f");
+}
+
+._2 {
+  --n: 2;
+}
+._3 {
+  --n: 3;
+}
+._4 {
+  --n: 4;
+}
+._5 {
+  --n: 5;
+}
+
+svg .a g:nth-of-type(1) {
+  transform: rotate(calc(-0.5 * 180deg / var(--n)));
+}
+svg .a g:nth-of-type(2) {
+  transform: rotate(calc(0.5 * 180deg / var(--n)));
+}
+
+svg .a g:nth-of-type(1) use:nth-of-type(2) {
+  transform: rotate(calc(-1deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(1) use:nth-of-type(3) {
+  transform: rotate(calc(-2deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(1) use:nth-of-type(4) {
+  transform: rotate(calc(-3deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(1) use:nth-of-type(5) {
+  transform: rotate(calc(-4deg * 180 / var(--n)));
+}
+
+svg .a g:nth-of-type(2) use:nth-of-type(2) {
+  transform: rotate(calc(1deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(2) use:nth-of-type(3) {
+  transform: rotate(calc(2deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(2) use:nth-of-type(4) {
+  transform: rotate(calc(3deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(2) use:nth-of-type(5) {
+  transform: rotate(calc(4deg * 180 / var(--n)));
+}
+
+#texto1 {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  /* color: rgb(14, 0, 144); /* Color del texto */
+  color: #bd4382;
+}
+
+#texto2 {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: rgba(67, 0, 94, 0.532); /* Color del texto */
+}
+
+.music-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease-in-out;
+}
+
+.music-button:hover {
+  background-color: #ff1493;
+}
