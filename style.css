@@ -109,7 +109,6 @@ svg .a g:nth-of-type(2) use:nth-of-type(5) {
   font-size: 30px;
   font-weight: bold;
   text-align: center;
-  /* color: rgb(14, 0, 144); /* Color del texto */
   color: #bd4382;
 }
 
@@ -121,7 +120,7 @@ svg .a g:nth-of-type(2) use:nth-of-type(5) {
   font-size: 20px;
   font-weight: bold;
   text-align: center;
-  color: rgba(67, 0, 94, 0.532); /* Color del texto */
+  color: rgba(67, 0, 94, 0.532);
 }
 
 .music-button {
