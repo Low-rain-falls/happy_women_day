@@ -1,14 +1,45 @@
 body {
   --t: 0.5;
   --scale: 3;
-  /* background-image: url("./assets/images/1.png"), url("./assets/images/2.png"), */
-  /*   url("./assets/images/3.png"); */
-  /* background-size: 300px, 200px, cover; */
-  /* background-position: */
-  /*   left top, */
-  /*   right bottom, */
-  /*   center; */
-  /* background-repeat: no-repeat; */
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
+  background-color: #f9f0f9;
+  /* Add a subtle gradient background */
+  background-image: linear-gradient(135deg, #f9f0f9 0%, #f3e0ff 100%);
+}
+
+/* Define root variables for consistent color theme */
+:root {
+  --primary-color: #bd4382;
+  --secondary-color: #6a0572;
+  --accent-color: #ff69b4;
+  --light-color: #f9f0f9;
+  --dark-color: #43005e;
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rotateFlower {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* .background-container { */
@@ -31,11 +62,21 @@ svg.root {
   position: absolute;
   left: -100em;
 }
+
 svg {
   width: 100vw;
   height: 100vh;
   background: #e0cae0;
   fill-opacity: 0.75;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* SVG wrapper to ensure proper positioning on all devices */
+.svg-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 symbol {
@@ -46,13 +87,21 @@ svg use {
   transform: rotate(0deg);
   transition: transform calc(var(--t) * 1s);
 }
-
 svg g.a {
-  transition: transform calc(var(--t) * 1s);
+  transition: transform calc(var(--t) * 1s), filter 0.5s ease-in-out;
 }
+
 svg g.a {
   transform: scale(var(--scale)) rotate(-90deg);
   filter: url("#f");
+  transform-origin: center;
+  animation: pulse 5s infinite ease-in-out;
+}
+
+/* Add hover effect for flower elements */
+svg g.a:hover {
+  filter: url("#f") saturate(1.5) brightness(1.1);
+  transform: scale(calc(var(--scale) * 1.1)) rotate(-90deg);
 }
 
 ._2 {
@@ -106,10 +155,25 @@ svg .a g:nth-of-type(2) use:nth-of-type(5) {
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 30px;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
-  color: #bd4382;
+  color: var(--primary-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  letter-spacing: 2px;
+  animation: fadeIn 1.5s ease-in-out, pulse 3s infinite ease-in-out;
+  padding: 15px 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#texto1:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 #texto2 {
@@ -117,27 +181,124 @@ svg .a g:nth-of-type(2) use:nth-of-type(5) {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 20px;
+  font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
-  color: rgba(67, 0, 94, 0.532);
+  color: var(--secondary-color);
+  z-index: 10;
+  letter-spacing: 1px;
+  animation: fadeIn 2s ease-in-out;
+  max-width: 90%;
+  padding: 15px 30px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#texto2:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .music-button {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  padding: 10px 20px;
-  background-color: #ff69b4;
+  padding: 12px 24px;
+  background-color: var(--accent-color);
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 30px;
   cursor: pointer;
   font-size: 16px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease-in-out;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
 }
 
 .music-button:hover {
   background-color: #ff1493;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.music-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.music-button.playing {
+  background-color: #6a0572;
+}
+
+/* Add audio icon to button */
+.music-button::before {
+  content: "♪";
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  #texto1 {
+    font-size: 2rem;
+    top: 65%;
+  }
+  
+  #texto2 {
+    font-size: 1.2rem;
+    top: 50%;
+  }
+  
+  .music-button {
+    bottom: 15px;
+    left: 15px;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  body {
+    --scale: 2.5;
+  }
+}
+
+@media (max-width: 480px) {
+  #texto1 {
+    font-size: 1.5rem;
+    top: 70%;
+  }
+  
+  #texto2 {
+    font-size: 1rem;
+    top: 55%;
+  }
+  
+  .music-button {
+    bottom: 10px;
+    left: 10px;
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  
+  body {
+    --scale: 2;
+  }
+}
+
+/* Fix for very small screens */
+@media (max-height: 500px) {
+  #texto1 {
+    top: 75%;
+  }
+  
+  #texto2 {
+    top: 60%;
+  }
 }
