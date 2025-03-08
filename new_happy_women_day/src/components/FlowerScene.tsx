@@ -1,15 +1,20 @@
-import { useRef, useState, useEffect } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
-import { AdaptiveDpr, OrbitControls } from '@react-three/drei';
-import { BloomEffect, EffectComposer, EffectPass, RenderPass } from 'postprocessing';
-import * as THREE from 'three';
-import { Flower } from './Flower';
-import { createInitialFlowerPattern } from '../utils/flowerUtils';
+import { useRef, useState, useEffect } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import { AdaptiveDpr, OrbitControls } from "@react-three/drei";
+import {
+  BloomEffect,
+  EffectComposer,
+  EffectPass,
+  RenderPass,
+} from "postprocessing";
+import * as THREE from "three";
+import { Flower } from "./Flower";
+import { createInitialFlowerPattern } from "../utils/flowerUtils";
 
 export const FlowerScene = () => {
   const { camera, gl, scene } = useThree();
   const [flowers, setFlowers] = useState<FlowerProps[]>([]);
-  const [isDrawing, setIsDrawing] = useState(false);
+  const [isDrawing, setIsDrawing] = useState(true);
   const lastPosition = useRef<{ x: number; y: number } | null>(null);
   const flowersDrawn = useRef(0);
   const composerRef = useRef<EffectComposer | null>(null);
@@ -27,8 +32,8 @@ export const FlowerScene = () => {
           luminanceThreshold: 0.2,
           luminanceSmoothing: 0.9,
           intensity: 2.0,
-        })
-      )
+        }),
+      ),
     );
     composerRef.current = composer;
 
@@ -52,9 +57,15 @@ export const FlowerScene = () => {
         scale:
           flower.scale *
           (0.95 +
-            Math.sin(frameRef.current * 0.5 + flower.position[0] * 2 + index * 0.1) * 0.03 + // X oscillation
-            Math.cos(frameRef.current * 0.5 + flower.position[1] * 2 + index * 0.1) * 0.03), // Y oscillation
-      }))
+            Math.sin(
+              frameRef.current * 0.5 + flower.position[0] * 2 + index * 0.1,
+            ) *
+              0.03 + // X oscillation
+            Math.cos(
+              frameRef.current * 0.5 + flower.position[1] * 2 + index * 0.1,
+            ) *
+              0.03), // Y oscillation
+      })),
     );
   });
 
@@ -78,24 +89,30 @@ export const FlowerScene = () => {
   useEffect(() => {
     const handleResize = () => {
       if (!isDrawing) {
-        const initialFlowers = createInitialFlowerPattern(200).map((flower) => ({
-          ...flower,
-          scale: flower.scale * 0.25,
-          bloomScale: 1,
-        }));
+        const initialFlowers = createInitialFlowerPattern(200).map(
+          (flower) => ({
+            ...flower,
+            scale: flower.scale * 0.25,
+            bloomScale: 1,
+          }),
+        );
         setFlowers(initialFlowers);
         flowersDrawn.current = initialFlowers.length;
       }
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [isDrawing]);
 
   // Convert screen coordinates to world coordinates
   const screenToWorld = (screenX: number, screenY: number) => {
     const vector = new THREE.Vector3();
-    vector.set((screenX / window.innerWidth) * 2 - 1, -(screenY / window.innerHeight) * 2 + 1, 0.5);
+    vector.set(
+      (screenX / window.innerWidth) * 2 - 1,
+      -(screenY / window.innerHeight) * 2 + 1,
+      0.5,
+    );
     vector.unproject(camera);
     const direction = vector.sub(camera.position).normalize();
     const distance = -camera.position.z / direction.z;
@@ -137,18 +154,18 @@ export const FlowerScene = () => {
   // Random color selection from palette with more vibrant colors
   const getRandomColor = () => {
     const colors = [
-      '#ff3366',
-      '#ff66b2',
-      '#ff99cc',
-      '#ff80bf',
-      '#ff1a75',
-      '#ff0066',
-      '#ff99ff',
-      '#ff66ff',
-      '#ff33ff',
-      '#ff00ff',
-      '#cc00cc',
-      '#ff3399',
+      "#ff3366",
+      "#ff66b2",
+      "#ff99cc",
+      "#ff80bf",
+      "#ff1a75",
+      "#ff0066",
+      "#ff99ff",
+      "#ff66ff",
+      "#ff33ff",
+      "#ff00ff",
+      "#cc00cc",
+      "#ff3399",
     ];
     return colors[Math.floor(Math.random() * colors.length)];
   };
@@ -168,7 +185,6 @@ export const FlowerScene = () => {
 
   const handlePointerDown = (e: PointerEvent) => {
     if (e.button === 0) {
-      setIsDrawing(true);
       const worldPos = screenToWorld(e.clientX, e.clientY);
       addFlower(worldPos, 1.5);
       lastPosition.current = { x: e.clientX, y: e.clientY };
@@ -176,7 +192,6 @@ export const FlowerScene = () => {
   };
 
   const handlePointerUp = () => {
-    setIsDrawing(false);
     lastPosition.current = null;
   };
 
@@ -200,7 +215,11 @@ export const FlowerScene = () => {
   return (
     <>
       <AdaptiveDpr pixelated />
-      <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
+      <OrbitControls
+        enableZoom={false}
+        enablePan={false}
+        enableRotate={false}
+      />
 
       <ambientLight intensity={0.7} />
       <directionalLight position={[10, 10, 10]} intensity={1} />

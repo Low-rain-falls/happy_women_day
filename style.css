@@ -3,7 +3,7 @@ body {
   --scale: 3;
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   overflow-x: hidden;
   background-color: #f9f0f9;
   /* Add a subtle gradient background */
@@ -21,25 +21,45 @@ body {
 
 /* Animation keyframes */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes rotateFlower {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* .background-container { */
@@ -88,7 +108,9 @@ svg use {
   transition: transform calc(var(--t) * 1s);
 }
 svg g.a {
-  transition: transform calc(var(--t) * 1s), filter 0.5s ease-in-out;
+  transition:
+    transform calc(var(--t) * 1s),
+    filter 0.5s ease-in-out;
 }
 
 svg g.a {
@@ -154,7 +176,7 @@ svg .a g:nth-of-type(2) use:nth-of-type(5) {
   position: fixed;
   top: 60%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   font-size: 3rem;
   font-weight: bold;
   text-align: justify;
@@ -162,7 +184,9 @@ svg .a g:nth-of-type(2) use:nth-of-type(5) {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 10;
   letter-spacing: 2px;
-  animation: fadeIn 1.5s ease-in-out, pulse 3s infinite ease-in-out;
+  animation:
+    fadeIn 1.5s ease-in-out,
+    pulse 3s infinite ease-in-out;
   padding: 15px 30px;
   background-color: rgba(255, 255, 255, 0.11);
   border-radius: 10px;
@@ -251,19 +275,19 @@ svg .a g:nth-of-type(2) use:nth-of-type(5) {
     font-size: 2rem;
     top: 65%;
   }
-  
+
   #texto2 {
     font-size: 1.2rem;
     top: 50%;
   }
-  
+
   .music-button {
     bottom: 15px;
     left: 15px;
     padding: 10px 20px;
     font-size: 14px;
   }
-  
+
   body {
     --scale: 2.5;
   }
@@ -274,19 +298,19 @@ svg .a g:nth-of-type(2) use:nth-of-type(5) {
     font-size: 1.5rem;
     top: 70%;
   }
-  
+
   #texto2 {
     font-size: 1rem;
     top: 55%;
   }
-  
+
   .music-button {
     bottom: 10px;
     left: 10px;
     padding: 8px 16px;
     font-size: 12px;
   }
-  
+
   body {
     --scale: 2;
   }
@@ -297,7 +321,7 @@ svg .a g:nth-of-type(2) use:nth-of-type(5) {
   #texto1 {
     top: 75%;
   }
-  
+
   #texto2 {
     top: 60%;
   }
