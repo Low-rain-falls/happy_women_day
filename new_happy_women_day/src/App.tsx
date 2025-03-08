@@ -1,16 +1,16 @@
-import { Canvas } from '@react-three/fiber';
-import { Suspense, useState, useEffect } from 'react';
-import { FlowerScene } from './components/FlowerScene';
-import { MessageOverlay } from './components/MessageOverlay';
-import { MusicControl } from './components/MusicControl';
-import './index.css';
+import { Canvas } from "@react-three/fiber";
+import { Suspense, useState, useEffect } from "react";
+import { FlowerScene } from "./components/FlowerScene";
+import { MessageOverlay } from "./components/MessageOverlay";
+import { MusicControl } from "./components/MusicControl";
+import "./index.css";
 
 const App = () => {
   const [musicPlaying, setMusicPlaying] = useState(false);
 
   useEffect(() => {
     // Load saved preferences
-    const savedPrefs = localStorage.getItem('flowerAppPrefs');
+    const savedPrefs = localStorage.getItem("flowerAppPrefs");
     if (savedPrefs) {
       const prefs = JSON.parse(savedPrefs);
       setMusicPlaying(prefs.musicPlaying);
@@ -20,10 +20,10 @@ const App = () => {
   useEffect(() => {
     // Save preferences when changed
     localStorage.setItem(
-      'flowerAppPrefs',
+      "flowerAppPrefs",
       JSON.stringify({
         musicPlaying,
-      })
+      }),
     );
   }, [musicPlaying]);
 
@@ -40,7 +40,10 @@ const App = () => {
       <MessageOverlay />
 
       {/* Music Control */}
-      <MusicControl playing={musicPlaying} togglePlaying={() => setMusicPlaying(!musicPlaying)} />
+      <MusicControl
+        playing={musicPlaying}
+        togglePlaying={() => setMusicPlaying(!musicPlaying)}
+      />
     </div>
   );
 };
